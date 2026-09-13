@@ -73,7 +73,7 @@ class Program
 
     public static void Run()
     {
-        string? Answer;
+        string? Answer = "y";
 
         do
         {
@@ -82,13 +82,21 @@ class Program
 
             char Operation = ReadOperation();
 
-            double Result = GetResult(Number1, Number2, Operation);
-            Console.WriteLine($"Result: {Result}");
+            if (Number2 == 0 && Operation == '/')
+            {
+                Console.WriteLine("Cannot divide by zero");
+            }
+            else
+            {
 
-            Console.Write("Do you want to do another calculation? (y/n): ");
-            Answer = Console.ReadLine();
+                double Result = GetResult(Number1, Number2, Operation);
+                Console.WriteLine($"Result: {Result}");
 
-            Answer = Answer?[0].ToString();
+                Console.Write("Do you want to do another calculation? (y/n): ");
+                Answer = Console.ReadLine();
+                Answer = Answer?[0].ToString();
+            }
+
 
         } while (Answer?[0] == 'y');
 
